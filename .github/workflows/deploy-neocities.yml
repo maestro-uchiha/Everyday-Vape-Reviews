@@ -1,0 +1,31 @@
+﻿name: Deploy to Neocities (parametric-static)
+
+on:
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: deploy-to-neocities
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ASD already bakes locally, so no build here. We just deploy the baked folder.
+      - name: Ensure not_found.html exists for Neocities 404
+        run: |
+          cp parametric-static/404.html parametric-static/not_found.html
+
+      - name: Deploy folder to Neocities
+        uses: bcomnes/deploy-to-neocities@v3
+        with:
+          api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
+          dist_dir: parametric-static
+          cleanup: false          # safe: don't delete files that aren't in dist_dir
+          preview_before_deploy: true

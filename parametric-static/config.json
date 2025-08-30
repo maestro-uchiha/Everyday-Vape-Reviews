@@ -1,7 +1,7 @@
 ﻿{
-  "SiteName": "My ASD Site",
+  "SiteName": "Everyday Vape Reviews",
   "StoreUrl": "https://example.com/",
   "Description": "Clean static sites with ASD.",
-  "BaseUrl": "https://maestro-uchiha.github.io/my-new-asd-site/",
+  "BaseUrl": "https://everyday-vape-reviews.neocities.org/",
   "author": { "name": "Maestro" }
 }
